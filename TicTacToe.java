@@ -12,10 +12,15 @@ class Main {
 
     public static boolean move(char[][] grid, int turns) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter position:");
+        System.out.println("Enter position (row no. between 0-2) + space + column no. between 0-2):");
         int row = sc.nextInt(), col = sc.nextInt();
 
-        if (grid[row][col] == '.') { // if empty space
+        if(!((row>-1&&row<3)&&(col>-1&&col<3))){
+            System.out.println("WRONG INPUT, PLEASE RE-ENTER:\n");
+            return true;
+        }
+
+        else if (grid[row][col] == '.') { // if empty space
             grid[row][col] = (turns % 2 == 0 ? 'O' : 'X');
             return false; // No overlap
         } else {
